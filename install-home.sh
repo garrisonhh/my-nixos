@@ -3,4 +3,4 @@ set -xe
 shopt -s dotglob
 
 cp -vr ./home/* /home/$USER
-home-manager switch
+home-manager switch --impure

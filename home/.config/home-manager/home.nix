@@ -11,12 +11,11 @@
 
   # files in ~/.config/
   xdg.configFile = {
-    "awesome/rc.lua".source = "../awesome/rc.lua";
+    "awesome/rc.lua".source = ~/dotfiles/awesome/rc.lua;
   };
 
   programs = {
     home-manager.enable = true;
-    zsh.enable = true;
     git = {
       enable = true;
       userName = "garrisonhh";

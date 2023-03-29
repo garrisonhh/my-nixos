@@ -60,7 +60,6 @@
   # system packages
   environment.systemPackages = with pkgs; [
     keepassxc # password manager (TODO move everything from firefox account to this)
-    alacritty # terminal emulator
     home-manager # system config (TODO create .nix for this)
     firefox # browser
     volumeicon # volume control for awesome-wm
@@ -74,6 +73,8 @@
     discord
 
     # cli
+    alacritty
+    zsh 
     wget
 
     # programming languages
@@ -82,7 +83,7 @@
   ];
 
   # user config
-  users.defaultUserShell = pkgs.fish;
+  users.defaultUserShell = pkgs.zsh;
   users.users.garrison = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # wheel allows 'sudo'
