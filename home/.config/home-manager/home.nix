@@ -16,11 +16,34 @@
 
   programs = {
     home-manager.enable = true;
+
     git = {
       enable = true;
       userName = "garrisonhh";
       userEmail = "garrisonhh@pm.me";
     };
     gh.enable = true;
+
+
+    zsh = {
+      enable = true;
+
+      zplug = {
+        enable = true;
+        plugins = [
+          { name = "zsh-users/zsh-autosuggestions"; }
+          { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+        ];
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        theme="powerlevel10k/powerlevel10k";
+        plugins = [
+          "git"
+          "sudo"
+        ];
+      };
+    };
   };
 }

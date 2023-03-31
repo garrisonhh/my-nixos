@@ -59,10 +59,11 @@
 
   # system packages
   environment.systemPackages = with pkgs; [
-    keepassxc # password manager (TODO move everything from firefox account to this)
-    home-manager # system config (TODO create .nix for this)
-    firefox # browser
-    volumeicon # volume control for awesome-wm
+    keepassxc    # password manager (TODO move everything from firefox account to this)
+    home-manager # system config
+    firefox      # browser
+    deluge       # torrent client
+    vlc          # video player
 
     # editors
     neovim
@@ -77,9 +78,11 @@
     zsh 
     wget
 
-    # programming languages
+    # programming languages and tools
     # zig # should probably just use local .nix for zig versions
     python311
+    luaformatter
+    gdb
   ];
 
   # user config
