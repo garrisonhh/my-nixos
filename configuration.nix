@@ -28,7 +28,7 @@
   # i18n
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    font = "Lat2-Terminus16`";
+    font = "Fantasque Sans Mono";
     keyMap = "us";
   };
 
@@ -54,6 +54,28 @@
         luarocks # lua pkg manager
         luadbi-mysql # lua database layer
       ];
+    };
+  };
+
+  # fonts
+  fonts = {
+    fonts = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+      fantasque-sans-mono
+    ];
+
+    enableDefaultFonts = true;
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "Noto Serif" "Liberation Serif" ];
+        sansSerif = [ "Noto Sans" "Liberation Sans" ];
+        monospace = [ "Fantasque Sans Mono" "Fira Code" ];
+      };
     };
   };
 

@@ -24,6 +24,9 @@
 
     zsh = {
       enable = true;
+      initExtra = ''
+        source ${config.xdg.configHome}/zsh/.p10k.zsh
+      '';
 
       zplug = {
         enable = true;
@@ -35,7 +38,6 @@
 
       oh-my-zsh = {
         enable = true;
-        theme="powerlevel10k/powerlevel10k";
         plugins = [
           "git"
           "sudo"
