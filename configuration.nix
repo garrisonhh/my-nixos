@@ -2,7 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+
+{
   imports = [
     ./hardware-configuration.nix
     <home-manager/nixos>
@@ -13,14 +15,17 @@
   nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   # networking
-  networking.hostName = "ghh-laptop";
-  # networking.wireless.enable = true; # use wpa_supplicant for wifi
-  networking.networkmanager.enable = true; # use NetworkManager for wifi
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking = {
+    hostName = "ghh-laptop";
+    networkmanager.enable = true; # use NetworkManager for wifi
+    proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  };
 
   # time zone
   time.timeZone = "America/New_York";
