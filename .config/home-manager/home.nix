@@ -9,10 +9,8 @@
     stateVersion = "22.11"; 
   };
 
-  # files in ~/.config/
-  xdg.configFile = {
-    "awesome/rc.lua".source = ~/dotfiles/awesome/rc.lua;
-  };
+  # applies custom rc.lua to "/etc/xdg/"
+  xdg.configFile."awesome/rc.lua".source = ~/.config/awesome/rc.lua;
 
   programs = {
     home-manager.enable = true;
@@ -23,7 +21,6 @@
       userEmail = "garrisonhh@pm.me";
     };
     gh.enable = true;
-
 
     zsh = {
       enable = true;

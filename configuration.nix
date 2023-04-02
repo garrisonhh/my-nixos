@@ -28,7 +28,7 @@
   # i18n
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    font = "Lat2-Terminus16";
+    font = "Lat2-Terminus16`";
     keyMap = "us";
   };
 
@@ -64,6 +64,7 @@
     firefox      # browser
     deluge       # torrent client
     vlc          # video player
+    alacritty    # terminal emulator
 
     # editors
     neovim
@@ -74,7 +75,9 @@
     discord
 
     # cli
-    alacritty
+    direnv
+    tree
+    neofetch
     zsh 
     wget
 
@@ -83,6 +86,9 @@
     python311
     luaformatter
     gdb
+    
+    ocaml
+    dune_3
   ];
 
   # user config
