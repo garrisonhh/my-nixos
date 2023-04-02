@@ -112,6 +112,11 @@
     ocaml
     dune_3
   ];
+  
+  # programs
+  programs = {
+    steam.enable = true;
+  };
 
   # user config
   users.defaultUserShell = pkgs.zsh;
