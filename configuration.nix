@@ -97,7 +97,6 @@
     discord
 
     # cli
-    direnv
     tree
     neofetch
     zsh 
