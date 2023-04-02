@@ -101,6 +101,7 @@
     neofetch
     zsh 
     wget
+    lsd
 
     # programming languages and tools
     # zig # should probably just use local .nix for zig versions
