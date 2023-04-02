@@ -28,6 +28,10 @@
         source ${config.xdg.configHome}/zsh/.p10k.zsh
       '';
 
+      shellAliases = {
+        ls = "lsd -1 --group-dirs last";
+      };
+
       zplug = {
         enable = true;
         plugins = [
