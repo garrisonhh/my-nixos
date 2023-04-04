@@ -7,6 +7,10 @@
 
     # don't change this unless you know what you are doing
     stateVersion = "22.11"; 
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
   };
 
   # applies custom rc.lua to "/etc/xdg/"
