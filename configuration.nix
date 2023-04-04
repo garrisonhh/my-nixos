@@ -82,6 +82,7 @@
     firefox      # browser
     deluge       # torrent client
     vlc          # video player
+    spotify      # music
     alacritty    # terminal emulator
 
     # editors
