@@ -22,15 +22,24 @@
     };
     gh.enable = true;
 
+    lsd = {
+      enable = true;
+      enableAliases = true;
+
+      # these get written to lsd's config.yml
+      settings = {
+        date = "+%Y %b %0d %X";
+        size = "short";
+        layout = "oneline";
+        sorting.dir-grouping = "last";
+      };
+    };
+
     zsh = {
       enable = true;
       initExtra = ''
         source ${config.xdg.configHome}/zsh/.p10k.zsh
       '';
-
-      shellAliases = {
-        ls = "lsd -1 --group-dirs last";
-      };
 
       zplug = {
         enable = true;
