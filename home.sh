@@ -3,4 +3,4 @@ set -xe
 shopt -s dotglob
 
 cp -vr ./.config "$HOME/"
-home-manager -f "$HOME/.config/home-manager/home.nix" switch
+home-manager switch --impure --flake "$HOME/.config/home-manager#garrison"
