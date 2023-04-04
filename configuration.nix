@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -14,7 +10,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
-  # Use the systemd-boot EFI boot loader.
+  # use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
@@ -65,21 +61,16 @@
   # fonts
   fonts = {
     fonts = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
+      nerdfonts
       liberation_ttf
-      fira-code
-      fira-code-symbols
-      fantasque-sans-mono
     ];
 
     enableDefaultFonts = true;
     fontconfig = {
       defaultFonts = {
-        serif = [ "Noto Serif" "Liberation Serif" ];
-        sansSerif = [ "Noto Sans" "Liberation Sans" ];
-        monospace = [ "Fantasque Sans Mono" "Fira Code" ];
+        serif = [ "Liberation Serif" "Symbols Nerd Font" ];
+        sansSerif = [ "Liberation Sans" "Symbols Nerd Font" ];
+        monospace = [ "agave Nerd Font Mono" "Symbols Nerd Font Mono" ];
       };
     };
   };
