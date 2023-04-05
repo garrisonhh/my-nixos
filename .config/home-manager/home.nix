@@ -11,6 +11,10 @@
     sessionVariables = {
       EDITOR = "nvim";
     };
+
+    packages = with pkgs; [
+      prismlauncher # sourced through flake.nix
+    ];
   };
 
   # applies custom rc.lua to "/etc/xdg/"

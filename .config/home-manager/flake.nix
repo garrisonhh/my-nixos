@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    prismlauncher.url = "github:PrismLauncher/PrismLauncher";
   };
 
   outputs = { nixpkgs, home-manager, ... }:
