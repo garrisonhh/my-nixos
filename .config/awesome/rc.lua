@@ -19,6 +19,15 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 -- {{{ Error handling
+-- notify for an error
+function pop_error(title, text)
+    naughty.notify({
+        preset = naughty.config.presets.critical,
+        title = title,
+        text = text
+    })
+end
+
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
@@ -36,20 +45,24 @@ do
         -- Make sure we don't go into an endless error loop
         if in_error then return end
         in_error = true
-
-        naughty.notify({
-            preset = naughty.config.presets.critical,
-            title = "Oops, an error happened!",
-            text = tostring(err)
-        })
+        pop_error(title, text)
         in_error = false
     end)
 end
 -- }}}
 
+-- {{{ utils
+function config_path(filepath)
+    return gears.filesystem.get_configuration_dir() .. filepath
+end
+-- }}}
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+local theme_path = config_path("theme.lua")
+if not beautiful.init(theme_path) then
+    pop_error("failed to load beautiful theme from:", theme_path)
+end
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -66,12 +79,12 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.floating, awful.layout.suit.tile,
-    awful.layout.suit.tile.left, awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top, awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal, awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle, awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen, awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw
+    -- awful.layout.suit.tile.left, awful.layout.suit.tile.bottom,
+    -- awful.layout.suit.tile.top, awful.layout.suit.fair,
+    -- awful.layout.suit.fair.horizontal, awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle, awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen, awful.layout.suit.magnifier,
+    -- awful.layout.suit.corner.nw
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -84,9 +97,9 @@ myawesomemenu = {
     {
         "hotkeys",
         function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
-    }, {"manual", terminal .. " -e man awesome"},
-    {"edit config", editor_cmd .. " " .. awesome.conffile},
-    {"restart", awesome.restart}, {"quit", function() awesome.quit() end}
+    },
+    {"restart", awesome.restart},
+    {"quit", function() awesome.quit() end}
 }
 
 mymainmenu = awful.menu({

@@ -17,8 +17,10 @@
     ];
   };
 
-  # applies custom rc.lua to "/etc/xdg/"
-  xdg.configFile."awesome/rc.lua".source = ~/.config/awesome/rc.lua;
+  # places custom stuff into xdg.configDir (this is impure)
+  xdg.configFile = {
+    "awesome/rc.lua".source = ~/.config/awesome/rc.lua;  
+  };
 
   programs = {
     home-manager.enable = true;
