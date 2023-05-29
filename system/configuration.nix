@@ -152,7 +152,7 @@
 
     jdk
 
-    zig
+    zigpkgs.master
     zls
   ];
 
