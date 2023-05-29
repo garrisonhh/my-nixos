@@ -7,5 +7,5 @@ if [[ $# < 1 ]]; then
     exit 1
 fi
 
-sudo cp -r ./configuration.nix /etc/nixos/
-sudo nixos-rebuild $@
+sudo cp -r ./system/* /etc/nixos/
+sudo nixos-rebuild --impure $@

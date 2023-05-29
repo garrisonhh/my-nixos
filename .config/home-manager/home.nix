@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, prismlauncher, ... }:
 
 {
   home = {
@@ -12,8 +12,9 @@
       EDITOR = "nvim";
     };
 
-    packages = with pkgs; [
-      prismlauncher # sourced through flake.nix
+    packages = [
+      # sourced through flake so I can use latest
+      prismlauncher.packages.${pkgs.system}.prismlauncher
     ];
   };
 
@@ -49,6 +50,7 @@
       enable = true;
       initExtra = ''
         source ${config.xdg.configHome}/zsh/.p10k.zsh
+        PATH="$PATH:$HOME/.local/bin"
       '';
 
       zplug = {

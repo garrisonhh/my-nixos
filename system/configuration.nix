@@ -21,6 +21,15 @@
     hostName = "ghh-laptop";
     networkmanager.enable = true; # use NetworkManager for wifi
     proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    firewall = {
+      enable = false;
+      allowedTCPPorts = [ 80 443 ];
+      allowedUDPPortRanges = [
+        { from = 1000; to = 2000; }
+        { from = 4000; to = 6000; }
+        { from = 8000; to = 9000; }
+      ];
+    };
   };
 
   # time zone
@@ -28,14 +37,14 @@
 
   # i18n
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Fantasque Sans Mono";
-    keyMap = "us";
-  };
+  console.keyMap = "us";
 
   # sound
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  # bluetooth
+  hardware.bluetooth.enable = true; # TODO I cannot get this working
 
   # x11 and awesome wm
   services.xserver = {
@@ -78,12 +87,27 @@
   # system packages
   environment.systemPackages = with pkgs; [
     keepassxc    # password manager (TODO move everything from firefox account to this)
-    home-manager # system config
-    firefox      # browser
-    deluge       # torrent client
-    vlc          # video player
-    spotify      # music
     alacritty    # terminal emulator
+    libreoffice  # office utilities
+
+    # config
+    home-manager
+
+    # internet
+    protonvpn-cli
+    firefox
+    deluge
+
+    # windows emu
+    wine
+    winetricks
+    wineWowPackages.staging
+    protontricks
+    lutris
+
+    # media
+    vlc
+    spotify
 
     # editors
     neovim
@@ -94,24 +118,42 @@
     discord
 
     # cli
-    tree
+    file
     neofetch
     zsh 
     wget
     lsd
 
-    # programming languages and tools
-    # zig # should probably just use local .nix for zig versions
+    # programming languages and tools (remember, you can always use flakes)
+    gnumake
+    cmake
+    pkg-config
+
     python311
-    luaformatter
+
     gdb
-    
+    lldb
+    clang
+    gcc
+    libcxx
+    libcxxStdenv
+
     ocaml
     dune_3
+    ocamlPackages.menhir
+    ocamlPackages.ocaml-lsp
+
+    rustup
+
+    jdk
+
+    zig
+    zls
   ];
-  
+
   # programs
   programs = {
+    zsh.enable = true;
     steam.enable = true;
   };
 
@@ -119,12 +161,13 @@
   users.defaultUserShell = pkgs.zsh;
   users.users.garrison = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # wheel allows 'sudo'
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
   # versioning
-  system.stateVersion = "22.11";
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
+  system = {
+    stateVersion = "22.11"; # the version this configuration was created on
+    autoUpgrade.enable = true;
+    autoUpgrade.allowReboot = true;
+  };
 }
-
