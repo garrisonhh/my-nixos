@@ -3,7 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./protonvpn.nix
+    ./modules/protonvpn.nix
     <home-manager/nixos>
   ];
 
