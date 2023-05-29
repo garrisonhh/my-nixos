@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./protonvpn.nix
     <home-manager/nixos>
   ];
 
@@ -16,19 +17,22 @@
     efi.canTouchEfiVariables = true;
   };
 
-  # networking
+  # networkmanager
   networking = {
     hostName = "ghh-laptop";
     networkmanager.enable = true; # use NetworkManager for wifi
     proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-    firewall = {
-      enable = false;
-      allowedTCPPorts = [ 80 443 ];
-      allowedUDPPortRanges = [
-        { from = 1000; to = 2000; }
-        { from = 4000; to = 6000; }
-        { from = 8000; to = 9000; }
-      ];
+    firewall.enable = false;
+  };
+
+  # protonvpn thru wireguard using erosa's config
+  services.protonvpn = {
+    enable = true;
+    autostart = true;
+    interface.privateKeyFile = "/root/secrets/protonvpn";
+    endpoint = {
+      publicKey = "qT0lxDVbWEIyrL2A40FfCXRlUALvnryRz2aQdD6gUDs=";
+      ip = "89.187.180.40";
     };
   };
 
@@ -44,7 +48,7 @@
   hardware.pulseaudio.enable = true;
 
   # bluetooth
-  hardware.bluetooth.enable = true; # TODO I cannot get this working
+  hardware.bluetooth.enable = true;
 
   # x11 and awesome wm
   services.xserver = {
@@ -95,6 +99,7 @@
 
     # internet
     protonvpn-cli
+    networkmanagerapplet
     firefox
     deluge
 
