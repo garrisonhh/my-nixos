@@ -104,11 +104,13 @@
     deluge
 
     # windows emu
-    wine
+    dxvk
     winetricks
-    wineWowPackages.staging
+    winePackages.staging
+    winePackages.fonts
     protontricks
     lutris
+    gamemode
 
     # media
     vlc
@@ -117,6 +119,7 @@
     # editors
     neovim
     vscodium
+    retext
 
     # communication
     slack
@@ -130,6 +133,8 @@
     lsd
 
     # programming languages and tools (remember, you can always use flakes)
+    git
+    gh
     gnumake
     cmake
     pkg-config

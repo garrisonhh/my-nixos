@@ -8,4 +8,4 @@ if [[ $# < 1 ]]; then
 fi
 
 sudo cp -r ./system/* /etc/nixos/
-sudo nixos-rebuild --impure $@
+sudo nixos-rebuild --flake /etc/nixos --impure $@

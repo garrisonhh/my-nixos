@@ -20,7 +20,6 @@
           zig.overlays.default
         ];
       };
-
     in {
       nixosConfigurations = {
         ${systemName} = nixpkgs.lib.nixosSystem {
