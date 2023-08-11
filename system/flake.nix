@@ -3,21 +3,29 @@
   
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.05";
-    home-manager.url = github:nix-community/home-manager/release-23.05;
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    zig.url = "github:mitchellh/zig-overlay";
+
+    zig = {
+      url = "github:mitchellh/zig-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    prismlauncher = {
+      url = "github:PrismLauncher/PrismLauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, zig, ... }:
+  outputs = { nixpkgs, zig, prismlauncher, ... }:
     let
       system = "x86_64-linux";
       systemName = "ghh-laptop";
 
-      pkgs = import nixpkgs {
+      pkgs = (import nixpkgs) {
         inherit system;
         config.allowUnfree = true;
         overlays = [
           zig.overlays.default
+          prismlauncher.overlay
         ];
       };
     in {

@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/protonvpn.nix
-    <home-manager/nixos>
   ];
 
   # nix ecosystem settings
@@ -94,9 +93,6 @@
     alacritty    # terminal emulator
     libreoffice  # office utilities
 
-    # config
-    home-manager
-
     # internet
     protonvpn-cli
     networkmanagerapplet
@@ -106,7 +102,7 @@
     # windows emu
     dxvk
     winetricks
-    winePackages.staging
+      winePackages.staging
     winePackages.fonts
     protontricks
     lutris
@@ -115,6 +111,7 @@
     # media
     vlc
     spotify
+    prismlauncher
 
     # editors
     neovim
@@ -163,8 +160,34 @@
 
   # programs
   programs = {
-    zsh.enable = true;
     steam.enable = true;
+
+    zsh = {
+      enable = true;
+      shellInit = ''
+        source ~/.config/zsh/.p10k.zsh
+        alias vi='nvim'
+        export EDITOR='nvim'
+
+        PATH="$HOME/.local/bin:$PATH"
+      '';
+
+      #zplug = {
+      #  enable = true;
+      #  plugins = [
+      #    { name = "zsh-users/zsh-autosuggestions"; }
+      #    { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+      #  ];
+      #};
+
+      #oh-my-zsh = {
+      #  enable = true;
+      #  plugins = [
+      #    "git"
+      #    "sudo"
+      #  ];
+      #};
+    };
   };
 
   # user config

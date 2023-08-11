@@ -1,0 +1,4 @@
+date: "+%Y %b %0d %X"
+size: short
+layout: oneline
+sorting.dir-grouping: last
