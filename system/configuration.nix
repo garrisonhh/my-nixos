@@ -16,6 +16,17 @@
     efi.canTouchEfiVariables = true;
   };
 
+  # systemd settings
+  systemd = {
+    extraConfig = ''
+      DefaultLimitNOFILE=1048576
+    '';
+
+    user.extraConfig = ''
+      DefaultLimitNOFILE=1048576
+    '';
+  };
+
   # networkmanager
   networking = {
     hostName = "ghh-laptop";
@@ -99,19 +110,22 @@
     firefox
     deluge
 
-    # windows emu
-    dxvk
-    winetricks
-      winePackages.staging
-    winePackages.fonts
-    protontricks
+    # gaming
     lutris
     gamemode
+    prismlauncher
+    dolphin-emu
+
+    # windows emu (mostly for gaming)
+    dxvk
+    winetricks
+    winePackages.staging
+    winePackages.fonts
+    protontricks
 
     # media
     vlc
     spotify
-    prismlauncher
 
     # editors
     neovim
@@ -154,7 +168,7 @@
 
     jdk
 
-    zigpkgs.master
+    zigpkgs."0.11.0"
     zls
   ];
 
