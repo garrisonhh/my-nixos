@@ -66,7 +66,7 @@
     layout = "us";
 
     libinput.enable = true; # touchpad support
- 
+
     displayManager = {
       sddm.enable = true;
       defaultSession = "none+awesome";
@@ -139,12 +139,13 @@
     # cli
     file
     neofetch
-    zsh 
+    zsh
     wget
     lsd
 
     # programming languages and tools (remember, you can always use flakes)
     git
+    git-lfs
     gh
     gnumake
     cmake
