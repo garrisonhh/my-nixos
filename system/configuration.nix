@@ -103,19 +103,15 @@
 
   # system packages
   environment.systemPackages = with pkgs; [
-    keepassxc    # password manager (TODO move everything from firefox account to this)
-    alacritty    # terminal emulator
-    libreoffice  # office utilities
+    alacritty
+    libreoffice
+    keepassxc
 
     # internet
     protonvpn-cli
     networkmanagerapplet
     firefox
     deluge
-
-    # email
-    protonmail-bridge
-    thunderbird
 
     # gaming
     lutris
