@@ -18,6 +18,8 @@
 
   # systemd settings
   systemd = {
+    # TODO these settings were for something important but I don't remember what
+    # the important thing was
     extraConfig = ''
       DefaultLimitNOFILE=1048576
     '';
@@ -30,6 +32,7 @@
   # networkmanager
   networking = {
     hostName = "ghh-laptop";
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
     networkmanager.enable = true; # use NetworkManager for wifi
     proxy.noProxy = "127.0.0.1,localhost,internal.domain";
     firewall.enable = false;
@@ -83,12 +86,12 @@
 
   # fonts
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       nerdfonts
       liberation_ttf
     ];
 
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontconfig = {
       defaultFonts = {
         serif = [ "Liberation Serif" "Symbols Nerd Font" ];
@@ -109,6 +112,10 @@
     networkmanagerapplet
     firefox
     deluge
+
+    # email
+    protonmail-bridge
+    thunderbird
 
     # gaming
     lutris
@@ -142,16 +149,22 @@
     zsh
     wget
     lsd
+    htop
+    tokei
+    zip
+    unzip
 
-    # programming languages and tools (remember, you can always use flakes)
+    # generic programming tools
     git
     git-lfs
     gh
     gnumake
-    cmake
     pkg-config
 
+    # languages + their build tools
     python311
+
+    deno
 
     gdb
     lldb
@@ -159,6 +172,7 @@
     gcc
     libcxx
     libcxxStdenv
+    cmake
 
     ocaml
     dune_3
@@ -171,6 +185,8 @@
 
     zigpkgs."0.11.0"
     zls
+
+    cordova
   ];
 
   # programs
@@ -186,36 +202,25 @@
 
         PATH="$HOME/.local/bin:$PATH"
       '';
-
-      #zplug = {
-      #  enable = true;
-      #  plugins = [
-      #    { name = "zsh-users/zsh-autosuggestions"; }
-      #    { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
-      #  ];
-      #};
-
-      #oh-my-zsh = {
-      #  enable = true;
-      #  plugins = [
-      #    "git"
-      #    "sudo"
-      #  ];
-      #};
     };
+  };
+
+  # virtuualbox
+  virtualisation.virtualbox.host = {
+    enable = true;
+    enableExtensionPack = true;
   };
 
   # user config
   users.defaultUserShell = pkgs.zsh;
   users.users.garrison = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "vboxusers" ];
   };
 
   # versioning
   system = {
     stateVersion = "22.11"; # the version this configuration was created on
     autoUpgrade.enable = true;
-    autoUpgrade.allowReboot = true;
   };
 }
